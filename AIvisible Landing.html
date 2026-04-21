@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AIvisible — ИИ-видимость вашего бренда</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    :root {
+      --bg: #07071c;
+      --surface: #0d0d24;
+      --surface2: #13132e;
+      --border: rgba(110, 110, 200, 0.13);
+      --text: #eeeef8;
+      --muted: #6464a0;
+      --cyan: #2de8d4;
+      --gold: #f0b040;
+      --radius: 16px;
+    }
+
+    /* ── Typography ───────────────────────────────────────── */
+    h1, h2, h3 {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      line-height: 1.1;
+    }
+    h2 { font-size: clamp(34px, 4vw, 54px); }
+    h3 { font-size: 18px; font-weight: 700; letter-spacing: -0.02em; }
+    p { line-height: 1.7; }
+
+    /* ── Hero Background ──────────────────────────────────── */
+    .aurora {
+      position: absolute; inset: 0; pointer-events: none;
+      background:
+        radial-gradient(ellipse 75% 65% at 68% 22%, rgba(45,232,212,0.11) 0%, transparent 70%),
+        radial-gradient(ellipse 55% 50% at 18% 65%, rgba(124,111,255,0.10) 0%, transparent 68%),
+        radial-gradient(ellipse 40% 35% at 85% 75%, rgba(240,176,64,0.05) 0%, transparent 60%);
+      animation: aurora-drift 12s ease-in-out infinite alternate;
+    }
+    .aurora.vivid {
+      background:
+        radial-gradient(ellipse 75% 65% at 68% 22%, rgba(45,232,212,0.2) 0%, transparent 70%),
+        radial-gradient(ellipse 55% 50% at 18% 65%, rgba(124,111,255,0.18) 0%, transparent 68%),
+        radial-gradient(ellipse 40% 35% at 85% 75%, rgba(240,176,64,0.1) 0%, transparent 60%);
+    }
+    .dot-grid {
+      position: absolute; inset: 0; pointer-events: none;
+      background-image: radial-gradient(circle, rgba(120,120,200,0.22) 1px, transparent 1px);
+      background-size: 44px 44px;
+      mask-image: radial-gradient(ellipse 95% 95% at 50% 50%, black 20%, transparent 80%);
+      -webkit-mask-image: radial-gradient(ellipse 95% 95% at 50% 50%, black 20%, transparent 80%);
+    }
+    @keyframes aurora-drift {
+      0%   { transform: scale(1) translate(0px, 0px); }
+      33%  { transform: scale(1.04) translate(-15px, -10px); }
+      66%  { transform: scale(1.02) translate(10px, -18px); }
+      100% { transform: scale(1.06) translate(-8px, 8px); }
+    }
+
+    /* ── Terminal Card ────────────────────────────────────── */
+    .terminal-card {
+      background: rgba(11,11,30,0.92);
+      border: 1px solid rgba(110,110,220,0.2);
+      border-radius: 18px;
+      padding: 28px 32px;
+      min-height: 240px;
+      backdrop-filter: blur(24px);
+      box-shadow:
+        0 48px 80px rgba(0,0,0,0.55),
+        0 2px 0 rgba(255,255,255,0.04) inset,
+        0 0 60px rgba(45,232,212,0.04);
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50%       { transform: translateY(-10px); }
+    }
+    .cursor {
+      display: inline-block;
+      width: 2px; height: 14px;
+      background: var(--cyan);
+      margin-left: 2px;
+      vertical-align: middle;
+      animation: blink .7s step-end infinite;
+    }
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: 0; }
+    }
+    @keyframes dot-bounce {
+      0%, 100% { transform: translateY(0); opacity: 0.6; }
+      50%       { transform: translateY(-6px); opacity: 1; }
+    }
+
+    /* ── Scroll Reveal ────────────────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* ── Buttons ──────────────────────────────────────────── */
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--cyan);
+      color: #07071c;
+      padding: 15px 30px;
+      border: none; border-radius: 12px;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 600; font-size: 15px;
+      cursor: pointer; letter-spacing: -0.02em;
+      transition: transform .2s, box-shadow .2s;
+      box-shadow: 0 0 40px rgba(45,232,212,0.28);
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 40px rgba(45,232,212,0.45);
+    }
+    .btn-secondary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: transparent;
+      color: var(--text);
+      padding: 15px 30px;
+      border: 1px solid var(--border); border-radius: 12px;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 500; font-size: 15px;
+      cursor: pointer; letter-spacing: -0.02em;
+      transition: border-color .2s, color .2s;
+    }
+    .btn-secondary:hover {
+      border-color: var(--cyan);
+      color: var(--cyan);
+    }
+
+    /* ── Section Label ────────────────────────────────────── */
+    .section-label {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 11px; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--cyan); margin-bottom: 20px;
+    }
+    .section-label::before {
+      content: '';
+      display: block;
+      width: 22px; height: 1px;
+      background: var(--cyan);
+    }
+
+    /* ── Cards ────────────────────────────────────────────── */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px 32px;
+      transition: border-color .3s, box-shadow .3s;
+    }
+    .card:hover {
+      border-color: rgba(45,232,212,0.25);
+      box-shadow: 0 8px 40px rgba(0,0,0,0.3);
+    }
+
+    /* ── Scrollbar ────────────────────────────────────────── */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: rgba(120,120,200,0.3); border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--cyan); }
+
+    /* ── Selection ────────────────────────────────────────── */
+    ::selection { background: rgba(45,232,212,0.2); color: var(--text); }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel" src="components.jsx"></script>
+
+  <script type="text/babel">
+    const { useState, useEffect } = React;
+
+    const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+      "accentColor": "#2de8d4",
+      "heroBg": "subtle"
+    }/*EDITMODE-END*/;
+
+    function applyTweaks(vals) {
+      document.documentElement.style.setProperty('--cyan', vals.accentColor);
+      // aurora vivid toggle is handled via class in Hero
+      window.__tweakVals = vals;
+      window.dispatchEvent(new CustomEvent('tweaks-changed', { detail: vals }));
+    }
+
+    function App() {
+      const [tweaks, setTweaks] = useState(TWEAK_DEFAULTS);
+
+      useEffect(() => { applyTweaks(tweaks); }, [tweaks]);
+
+      const handleChange = (next) => {
+        setTweaks(next);
+        applyTweaks(next);
+      };
+
+      return (
+        <>
+          <Nav />
+          <Hero heroBg={tweaks.heroBg} />
+          <ProblemSection />
+          <NewRealitySection />
+          <ServicesSection />
+          <RoadmapSection />
+          <ResultsSection />
+          <WhySaaSSection />
+          <PricingSection />
+          <FAQSection />
+          <FooterCTA />
+          <TweaksPanel defaults={TWEAK_DEFAULTS} onChange={handleChange} />
+        </>
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+  </script>
+</body>
+</html>
