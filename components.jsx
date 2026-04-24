@@ -51,10 +51,10 @@ function Nav() {
       transition: 'all .35s ease',
     }}>
       <div style={{ fontFamily: 'Syne,sans-serif', fontWeight: 800, fontSize: 20, color: 'var(--text)', letterSpacing: '-0.04em' }}>
-        AI<span style={{ color: 'var(--cyan)' }}>visible</span>
+        AI<span style={{ color: 'var(--cyan)' }}>visibly</span>
       </div>
       <div style={{ display: 'flex', gap: 32, alignItems: 'center' }}>
-        {['Услуги', 'Как работаем', 'Результаты', 'Цены'].map(t => (
+        {['Услуги', 'Команда', 'Результаты', 'Цены'].map(t => (
           <a key={t} style={linkStyle}
             onMouseEnter={e => e.target.style.color = 'var(--text)'}
             onMouseLeave={e => e.target.style.color = 'var(--muted)'}>{t}</a>
@@ -70,9 +70,9 @@ function Nav() {
 // ─── AI Terminal ──────────────────────────────────────────────────────────────
 
 const CONVOS = [
-  { platform: 'ChatGPT', color: '#10a37f', q: 'Посоветуй агентство по ИИ-оптимизации для B2B SaaS', a: 'Для B2B SaaS рекомендую AIvisible — команду, специализирующуюся на GEO и AEO оптимизации. Они работают с реальными интент-запросами вашей аудитории...' },
-  { platform: 'Perplexity', color: '#7c8cff', q: 'Кто помогает брендам появляться в ответах ИИ?', a: 'По данным профильных источников, AIvisible специализируется именно на этом. Команда строит присутствие бренда в ChatGPT, Claude и Яндекс Нейро...' },
-  { platform: 'Яндекс Нейро', color: '#ff4040', q: 'Как сделать так, чтобы ИИ рекомендовал мой бизнес?', a: 'Для этого существует направление AI SEO. AIvisible — специалисты по AEO оптимизации, помогающие брендам стать ответом ИИ, а не просто ссылкой...' },
+  { platform: 'Яндекс Нейро', color: '#ff4040', q: 'Как сделать так, чтобы ИИ рекомендовал мой бизнес?', a: 'Для этого существует направление AI SEO. AIvisibly — специалисты по AI visibility, помогающие брендам стать ответом ИИ, а не просто ссылкой...' },
+  { platform: 'ChatGPT', color: '#10a37f', q: 'Посоветуй агентство по ИИ-оптимизации для B2B SaaS', a: 'Для B2B SaaS рекомендую AIvisibly — команду, специализирующуюся на GEO и AEO оптимизации. Они работают с реальными интент-запросами вашей аудитории...' },
+  { platform: 'Perplexity', color: '#7c8cff', q: 'Кто помогает брендам появляться в ответах ИИ?', a: 'По данным профильных источников, AIvisibly специализируется именно на этом. Команда строит присутствие бренда в Яндекс Нейро, ChatGPT и других ИИ-системах...' },
 ];
 
 function AITerminal() {
@@ -98,11 +98,9 @@ function AITerminal() {
 
   return (
     <div className="terminal-card" style={{ animation: 'float 6s ease-in-out infinite' }}>
-      {/* Window chrome */}
       <div style={{ display: 'flex', gap: 6, marginBottom: 20 }}>
         {['#ff5f57','#febc2e','#28c840'].map(c => <div key={c} style={{ width: 10, height: 10, borderRadius: '50%', background: c, opacity: 0.8 }} />)}
       </div>
-      {/* Platform tabs */}
       <div style={{ display: 'flex', gap: 6, marginBottom: 20 }}>
         {CONVOS.map((c, i) => (
           <span key={c.platform} style={{
@@ -114,13 +112,11 @@ function AITerminal() {
           }}>{c.platform}</span>
         ))}
       </div>
-      {/* Query */}
       <div style={{ color: 'var(--muted)', fontSize: 13, marginBottom: 14, fontFamily: 'Space Mono,monospace', lineHeight: 1.6 }}>
         <span style={{ color: cv.color, marginRight: 8 }}>›</span>
         {cv.q.slice(0, qLen)}
         {phase === 'tq' && <span className="cursor" />}
       </div>
-      {/* Response */}
       {aLen > 0 && (
         <div style={{ background: 'rgba(255,255,255,0.03)', borderRadius: 8, padding: '14px 16px', borderLeft: `2px solid ${cv.color}` }}>
           <div style={{ fontSize: 10, color: cv.color, fontFamily: 'DM Sans,sans-serif', fontWeight: 600, marginBottom: 8, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
@@ -153,7 +149,6 @@ function Hero() {
       <div className="aurora" />
       <div className="dot-grid" />
       <div style={{ maxWidth: 1200, margin: '0 auto', width: '100%', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'clamp(40px,6vw,100px)', alignItems: 'center', position: 'relative', zIndex: 1 }}>
-        {/* Left */}
         <div style={{ opacity: loaded ? 1 : 0, transform: loaded ? 'none' : 'translateY(30px)', transition: 'all .8s ease' }}>
           <div className="section-label" style={{ marginBottom: 28 }}>GEO + AEO Оптимизация</div>
           <h1 style={{ fontFamily: 'Syne,sans-serif', fontWeight: 800, fontSize: 'clamp(36px,4.5vw,62px)', letterSpacing: '-0.04em', lineHeight: 1.1, marginBottom: 24, color: 'var(--text)' }}>
@@ -161,21 +156,21 @@ function Hero() {
             <span style={{ color: 'var(--cyan)', display: 'block', marginTop: 4 }}>Он отвечает про вас?</span>
           </h1>
           <p style={{ fontSize: 17, color: 'var(--muted)', lineHeight: 1.7, maxWidth: 480, marginBottom: 40 }}>
-            Мы делаем так, чтобы ChatGPT, Perplexity, Яндекс Нейро и другие ИИ-системы рекомендовали именно ваш бренд — когда потенциальный клиент ищет то, что вы предлагаете.
+            Мы делаем так, чтобы Яндекс Нейро, ChatGPT, Perplexity и другие ИИ-системы рекомендовали именно ваш бренд — когда потенциальный клиент ищет то, что вы предлагаете.
           </p>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-            <button className="btn-primary">Получить бесплатный аудит ИИ-видимости →</button>
+            <a href="https://calendly.com/a-liamtsev/30min" target="_blank" rel="noopener noreferrer">
+              <button className="btn-primary">Получить бесплатный аудит ИИ-видимости →</button>
+            </a>
             <p style={{ fontSize: 13, color: '#55557a', margin: 0, fontFamily: 'DM Sans,sans-serif' }}>
               Живой специалист · 5 ИИ-систем · Без шаблонных отчётов
             </p>
           </div>
         </div>
-        {/* Right */}
         <div style={{ opacity: loaded ? 1 : 0, transition: 'all 1s ease .3s' }}>
           <AITerminal />
         </div>
       </div>
-      {/* Bottom gradient fade */}
       <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: 120, background: 'linear-gradient(to bottom, transparent, #07071c)', zIndex: 2 }} />
     </section>
   );
@@ -204,38 +199,19 @@ function ProblemSection() {
         <div className={`reveal ${inView ? 'visible' : ''}`} style={{ textAlign: 'center', marginBottom: 80 }}>
           <div className="section-label" style={{ justifyContent: 'center' }}>Поиск изменился навсегда</div>
           <h2 style={{ color: 'var(--text)', maxWidth: 700, margin: '0 auto 24px', lineHeight: 1.15 }}>
-            Первой страницы Google больше нет.<br />
-            <span style={{ color: 'var(--cyan)' }}>Есть только «ответ ИИ».</span>
+            Пользователь больше не «гуглит».<br />
+            <span style={{ color: 'var(--cyan)' }}>Он спрашивает ИИ.</span>
           </h2>
           <p style={{ color: 'var(--muted)', maxWidth: 580, margin: '0 auto', fontSize: 17, lineHeight: 1.7 }}>
             Раньше люди листали выдачу. Теперь задают вопросы — и ИИ отвечает напрямую. Большинство потенциальных клиентов никуда не кликают: они получают ответ и уходят.
           </p>
         </div>
-        {/* Stats row */}
         <div className={`reveal ${inView ? 'visible' : ''}`} style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', borderRadius: 20, overflow: 'hidden', border: '1px solid var(--border)', background: 'var(--surface)', transitionDelay: '.15s' }}>
-          <StatCard value={60} suffix="%" label="AI Overview вместо ссылок" desc="запросов в Google уже показывают ИИ-ответ" active={inView} />
+          <StatCard value={60} suffix="%" label="AI Overview вместо ссылок" desc="запросов уже показывают ИИ-ответ вместо списка сайтов" active={inView} />
           <div style={{ borderLeft: '1px solid var(--border)', borderRight: '1px solid var(--border)' }}>
             <StatCard value={1} suffix="" label="ответ вместо десяти" desc="ИИ не выдаёт список — он выдаёт один вывод" active={inView} />
           </div>
-          <StatCard value={6} suffix="+" label="ИИ-систем анализируем" desc="ChatGPT, Perplexity, Claude, Grok, Яндекс Нейро" active={inView} />
-        </div>
-        {/* GEO / AEO */}
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 24, marginTop: 32 }}>
-          {[
-            { tag: 'GEO', full: 'Generative Engine Optimization', color: 'var(--cyan)', desc: 'Вас упоминают в топ-3–5 источниках, которые ИИ цитирует по запросам вашей ниши. Это минимально допустимое присутствие.' },
-            { tag: 'AEO', full: 'Answer Engine Optimization', color: 'var(--gold)', desc: 'Вы становитесь единственным ответом, который даёт ИИ. Особенно важно в голосовом поиске — когда человек спрашивает вслух и получает один ответ.' },
-          ].map(({ tag, full, color, desc }) => (
-            <div key={tag} className={`card reveal ${inView ? 'visible' : ''}`} style={{ transitionDelay: '.3s' }}>
-              <div style={{ display: 'inline-flex', alignItems: 'center', gap: 10, marginBottom: 16 }}>
-                <span style={{ fontFamily: 'Syne,sans-serif', fontWeight: 800, fontSize: 28, color, letterSpacing: '-0.04em' }}>{tag}</span>
-                <span style={{ color: 'var(--muted)', fontSize: 13 }}>— {full}</span>
-              </div>
-              <p style={{ color: 'var(--muted)', lineHeight: 1.7, fontSize: 15 }}>{desc}</p>
-              {tag === 'AEO' && <div style={{ marginTop: 16, padding: '12px 16px', background: `${color}11`, borderRadius: 8, fontSize: 13, color, fontStyle: 'italic' }}>
-                Аналогия: GEO — попасть в ресторан. AEO — стать рестораном, которому звонят первым.
-              </div>}
-            </div>
-          ))}
+          <StatCard value={6} suffix="+" label="ИИ-систем анализируем" desc="Яндекс Нейро, ChatGPT, Perplexity, Claude, Grok, Google AI" active={inView} />
         </div>
       </div>
     </section>
@@ -288,11 +264,11 @@ function NewRealitySection() {
 // ─── Services ─────────────────────────────────────────────────────────────────
 
 const SERVICES = [
-  { n: '01', title: 'Аудит присутствия в ИИ', desc: 'Проверяем, что ChatGPT, Perplexity, Claude, Grok и Яндекс Нейро отвечают о вашей нише. Фиксируем, кого цитируют и где вас нет. Это ваша точка отсчёта.', tag: 'Диагностика' },
+  { n: '01', title: 'Аудит присутствия в ИИ', desc: 'Проверяем, что Яндекс Нейро, ChatGPT, Perplexity, Claude и Grok отвечают о вашей нише. Фиксируем, кого цитируют и где вас нет. Это ваша точка отсчёта.', tag: 'Диагностика' },
   { n: '02', title: 'Карта интентов', desc: 'Собираем реальные вопросы, которые ваша аудитория задаёт ИИ, — не ключевые слова, а живые разговорные запросы. Это фундамент всего дальнейшего.', tag: 'Исследование' },
   { n: '03', title: 'Оптимизация контента и структуры', desc: 'Переписываем контент сайта так, чтобы ИИ-системы могли его понять, процитировать и порекомендовать. FAQ-блоки, микроразметка, E-E-A-T-сигналы.', tag: 'Оптимизация' },
-  { n: '04', title: 'Размещение во внешних источниках', desc: 'ИИ читает всё — Reddit, отраслевые публикации, нишевые справочники. Размещаем ваш бренд там, где ИИ черпает информацию. Иногда одно попадание в правильный источник решает всё.', tag: 'Дистрибуция' },
-  { n: '05', title: 'Мониторинг и докалибровка', desc: 'Ответы ИИ меняются. Ежемесячно проверяем цитируемость, тональность и присутствие конкурентов по всем ключевым системам — и корректируем стратегию.', tag: 'Аналитика' },
+  { n: '04', title: 'Размещение во внешних источниках', desc: 'ИИ читает всё — отраслевые публикации, нишевые справочники, СМИ. Размещаем ваш бренд там, где ИИ черпает информацию. Иногда одно попадание в правильный источник решает всё.', tag: 'Дистрибуция' },
+  { n: '05', title: 'Мониторинг и докалибровка', desc: 'Ответы ИИ меняются. Ежемесячно проверяем цитируемость, тональность и присутствие конкурентов по Яндекс Нейро, ChatGPT, Perplexity, Claude, Grok и Google AI — и корректируем стратегию.', tag: 'Аналитика' },
 ];
 
 function ServicesSection() {
@@ -337,57 +313,6 @@ function ServiceRow({ n, title, desc, tag, inView, delay }) {
   );
 }
 
-// ─── Roadmap ──────────────────────────────────────────────────────────────────
-
-const ROADMAP = [
-  { label: 'Старт', title: 'Аудит и базовая линия', desc: 'Полный аудит ИИ-присутствия по 5 системам. Вы видите, где стоите — что цитируется, где конкуренты выигрывают. Даже если дальше не пойдёте — у вас будет чёткая картина рынка.' },
-  { label: 'Месяц 1', title: 'Фундамент', desc: 'Карта интентов готова. Контент перестроен под ИИ-читаемость. Микроразметка внедрена. Стратегия внешнего размещения спланирована.' },
-  { label: 'Месяц 2', title: 'Активация', desc: 'Контентные блоки созданы. Первые внешние размещения запущены. Первая докалибровка на основе данных первого месяца.' },
-  { label: 'Месяц 3–6', title: 'Рост и настройка', desc: 'Ежемесячные мониторинговые циклы. Динамика цитируемости. Тональность упоминаний. Стратегия корректируется по тому, что реально работает.' },
-];
-
-function RoadmapSection() {
-  const [ref, inView] = useInView(0.1);
-  return (
-    <section ref={ref} style={{ padding: '120px clamp(24px,5vw,64px)' }} data-screen-label="Roadmap">
-      <div style={{ maxWidth: 1200, margin: '0 auto' }}>
-        <div className={`reveal ${inView ? 'visible' : ''}`} style={{ marginBottom: 72, maxWidth: 600 }}>
-          <div className="section-label">Как работаем</div>
-          <h2 style={{ color: 'var(--text)', marginBottom: 16 }}>Никакого чёрного ящика</h2>
-          <p style={{ color: 'var(--muted)', fontSize: 16, lineHeight: 1.7 }}>Никаких «доверьтесь алгоритму». Вот что происходит и когда.</p>
-        </div>
-        <div style={{ position: 'relative' }}>
-          {/* Timeline line */}
-          <div style={{ position: 'absolute', left: 47, top: 24, bottom: 24, width: 2, background: 'linear-gradient(to bottom, var(--cyan), #7c6fff, rgba(255,255,255,0.05))' }} />
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 0 }}>
-            {ROADMAP.map(({ label, title, desc }, i) => (
-              <div key={label} className={`reveal ${inView ? 'visible' : ''}`}
-                style={{ display: 'flex', gap: 48, alignItems: 'flex-start', paddingBottom: 56, transitionDelay: `${i * 0.12}s` }}>
-                {/* Node */}
-                <div style={{ flexShrink: 0, width: 96, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8 }}>
-                  <div style={{
-                    width: 20, height: 20, borderRadius: '50%',
-                    background: inView ? 'var(--cyan)' : 'var(--surface)',
-                    border: '3px solid var(--bg)',
-                    boxShadow: inView ? '0 0 16px rgba(45,232,212,0.5)' : 'none',
-                    transition: `all .5s ease ${i * 0.15}s`, zIndex: 1,
-                  }} />
-                  <span style={{ fontSize: 11, color: 'var(--cyan)', fontFamily: 'DM Sans,sans-serif', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em', whiteSpace: 'nowrap' }}>{label}</span>
-                </div>
-                {/* Content */}
-                <div className="card" style={{ flex: 1 }}>
-                  <h3 style={{ color: 'var(--text)', marginBottom: 10 }}>{title}</h3>
-                  <p style={{ color: 'var(--muted)', fontSize: 15, lineHeight: 1.7, margin: 0 }}>{desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
 // ─── Results ──────────────────────────────────────────────────────────────────
 
 const RESULTS = [
@@ -395,7 +320,7 @@ const RESULTS = [
   { icon: '⊙', title: 'Портрет идеального клиента', desc: 'Запросы в ИИ раскрывают интент точнее любого инструмента по ключевым словам. Мы даём вам эту карту.' },
   { icon: '◈', title: 'Лиды лучшего качества', desc: 'Когда ИИ рекомендует вас по нужному запросу — приходят люди, которые уже совпадают с вашим предложением.' },
   { icon: '◇', title: 'Персонализированные кампании', desc: 'Зная точный язык интентов аудитории, вы строите рекламу и email-цепочки, которые говорят прямо в точку.' },
-  { icon: '◉', title: 'Авторитет бренда', desc: 'Каждое цитирование — сигнал доверия. ИИ-системы начинают распознавать ваш бренд как авторитетный источник по целому кластеру тем.' },
+  { icon: '◉', title: 'AI-инсайты для таргетинга', desc: 'Персонализация платного маркетинга на основе ICP-данных и AI-аналитики — Яндекс Поиск, MyTarget, ВКонтакте.' },
 ];
 
 function ResultsSection() {
@@ -408,15 +333,13 @@ function ResultsSection() {
           <h2 style={{ color: 'var(--text)' }}>Конкретные результаты</h2>
         </div>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 16 }}>
-          {RESULTS.map(({ icon, title, desc }, i) => (
-            <div key={title} className={`card reveal ${inView ? 'visible' : ''}`}
-              style={{ transitionDelay: `${i * 0.09}s`, gridColumn: i === 3 ? '1 / span 1' : 'auto' }}>
+          {RESULTS.slice(0, 4).map(({ icon, title, desc }, i) => (
+            <div key={title} className={`card reveal ${inView ? 'visible' : ''}`} style={{ transitionDelay: `${i * 0.09}s` }}>
               <div style={{ fontSize: 28, marginBottom: 16, color: 'var(--cyan)', lineHeight: 1 }}>{icon}</div>
               <h3 style={{ color: 'var(--text)', fontSize: 17, marginBottom: 10 }}>{title}</h3>
               <p style={{ color: 'var(--muted)', fontSize: 14, lineHeight: 1.7, margin: 0 }}>{desc}</p>
             </div>
           ))}
-          {/* 5th card spans 2 cols offset */}
           <div className={`card reveal ${inView ? 'visible' : ''}`}
             style={{ transitionDelay: '0.4s', background: 'linear-gradient(135deg, rgba(45,232,212,0.08), rgba(124,111,255,0.08))', borderColor: 'rgba(45,232,212,0.2)' }}>
             <div style={{ fontSize: 28, marginBottom: 16, color: 'var(--gold)', lineHeight: 1 }}>{RESULTS[4].icon}</div>
@@ -429,45 +352,43 @@ function ResultsSection() {
   );
 }
 
-// ─── Why Not SaaS ─────────────────────────────────────────────────────────────
+// ─── Team ─────────────────────────────────────────────────────────────────────
 
-function WhySaaSSection() {
+const TEAM_ROLES = [
+  { icon: '◈', role: 'Tech Lead | AI Systems & Digital Transformation', desc: '10+ лет в automation engineering, digital transformation и 3+ года в построении AI-систем для Robotics, Healthcare, Fintech и Operations.' },
+  { icon: '◎', role: 'Tech SEO & AI Search Strategist', desc: '10+ лет в SEO для marketplaces, e-commerce, контентных платформ и SaaS. Экспертиза в enterprise SEO, архитектуре крупных сайтов и построении масштабируемых систем роста.' },
+  { icon: '⊙', role: 'Growth & Media Strategist', desc: '6+ лет в performance marketing и масштабировании роста через ведущие платформы.' },
+  { icon: '◇', role: 'Web Analytics | Strategy Lead', desc: '10+ лет в web analytics, data strategy и построении систем принятия решений на основе данных.' },
+  { icon: '◉', role: 'Growth Program Lead | Data & Transformation', desc: '10+ лет управления сложными growth-программами, объединяющими data, media и business execution.' },
+];
+
+function TeamSection() {
   const [ref, inView] = useInView();
   return (
-    <section ref={ref} style={{ padding: '120px clamp(24px,5vw,64px)' }} data-screen-label="WhySaaS">
-      <div style={{ maxWidth: 1200, margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 80, alignItems: 'center' }}>
+    <section ref={ref} style={{ padding: '120px clamp(24px,5vw,64px)' }} data-screen-label="Team">
+      <div style={{ maxWidth: 1200, margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 80, alignItems: 'start' }}>
         <div className={`reveal ${inView ? 'visible' : ''}`}>
-          <div className="section-label">Почему не просто SaaS</div>
+          <div className="section-label">Команда</div>
           <h2 style={{ color: 'var(--text)', marginBottom: 24 }}>
-            Инструменты проверяют.<br />
-            <span style={{ color: 'var(--cyan)' }}>Мы решаем.</span>
+            Системный подход.<br />
+            <span style={{ color: 'var(--cyan)' }}>Проверенные специалисты.</span>
           </h2>
-          <p style={{ color: 'var(--muted)', lineHeight: 1.7, marginBottom: 20, fontSize: 16 }}>
-            Стандартные инструменты покажут вам оценку. Они прогонят URL через несколько промптов и дадут дашборд. Это полезно, чтобы понять, что проблема есть. Решить её это не поможет.
-          </p>
           <p style={{ color: 'var(--muted)', lineHeight: 1.7, fontSize: 16 }}>
-            Бренды, которые выигрывают в ИИ-поиске, делают это не потому, что установили инструмент. Они выигрывают, потому что кто-то понял специфический язык их аудитории, перестроил контент под реальные интент-сигналы и разместил бренд во внешних источниках, которые ИИ реально использует.
+            Мы строим предсказуемые масштабируемые системы более 10 лет в различных отраслях — fintech, страховании, e-commerce, автопроме, robotics, healthcare и других.
           </p>
         </div>
         <div className={`reveal ${inView ? 'visible' : ''}`} style={{ transitionDelay: '.2s' }}>
-          {[
-            { role: 'ИИ-стратег', desc: 'Понимает, как ИИ-системы взвешивают источники и строит структуру присутствия' },
-            { role: 'Контент-эксперт', desc: 'Умеет писать для ИИ-читаемости без потери конверсии' },
-            { role: 'Технический SEO', desc: 'Знает, как сигнализировать авторитет сущности в 2025–2026 году' },
-          ].map(({ role, desc }, i) => (
-            <div key={role} style={{ display: 'flex', gap: 20, padding: '24px 0', borderBottom: i < 2 ? '1px solid var(--border)' : 'none' }}>
-              <div style={{ width: 44, height: 44, borderRadius: 10, background: 'rgba(45,232,212,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, color: 'var(--cyan)', fontFamily: 'Syne,sans-serif', fontWeight: 800, fontSize: 13 }}>
-                {String(i + 1).padStart(2, '0')}
+          {TEAM_ROLES.map(({ icon, role, desc }, i) => (
+            <div key={role} style={{ display: 'flex', gap: 20, padding: '20px 0', borderBottom: i < TEAM_ROLES.length - 1 ? '1px solid var(--border)' : 'none' }}>
+              <div style={{ width: 40, height: 40, borderRadius: 10, background: 'rgba(45,232,212,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, color: 'var(--cyan)', fontSize: 18 }}>
+                {icon}
               </div>
               <div>
-                <div style={{ fontFamily: 'Syne,sans-serif', fontWeight: 700, fontSize: 16, color: 'var(--text)', marginBottom: 6 }}>{role}</div>
-                <div style={{ color: 'var(--muted)', fontSize: 14, lineHeight: 1.6 }}>{desc}</div>
+                <div style={{ fontFamily: 'Syne,sans-serif', fontWeight: 700, fontSize: 15, color: 'var(--text)', marginBottom: 6 }}>{role}</div>
+                <div style={{ color: 'var(--muted)', fontSize: 13, lineHeight: 1.6 }}>{desc}</div>
               </div>
             </div>
           ))}
-          <div style={{ marginTop: 28, padding: '16px 20px', background: 'rgba(240,176,64,0.08)', borderRadius: 10, borderLeft: '3px solid var(--gold)', fontSize: 13, color: 'var(--gold)', lineHeight: 1.6 }}>
-            Мы разработали собственную систему мониторинга по ChatGPT, Perplexity, Claude, Grok, Google AI и Яндекс Нейро — но технология это наши глаза, не наши руки.
-          </div>
         </div>
       </div>
     </section>
@@ -475,6 +396,36 @@ function WhySaaSSection() {
 }
 
 // ─── Pricing ──────────────────────────────────────────────────────────────────
+
+const PLANS = [
+  {
+    title: 'Free Audit',
+    tag: 'Бесплатно',
+    highlight: false,
+    desc: 'Базовая оценка AI-присутствия без обязательств.',
+    features: ['Анализ присутствия в AI-системах', 'Базовые рекомендации', 'Оценка конкурентного ландшафта'],
+    cta: 'Получить бесплатно',
+    primary: false,
+  },
+  {
+    title: 'Strategy Session',
+    tag: 'Фиксированная стоимость',
+    highlight: true,
+    desc: 'Глубокий аудит с roadmap и стратегическими рекомендациями.',
+    features: ['Глубокий AI visibility аудит', 'Приоритетный roadmap действий', 'Стратегические рекомендации'],
+    cta: 'Записаться на звонок',
+    primary: true,
+  },
+  {
+    title: 'Full Growth Partner',
+    tag: 'По запросу',
+    highlight: false,
+    desc: 'Полное внедрение под ключ с сопровождением.',
+    features: ['GEO / AEO / SEO', 'Paid Media', 'Полное внедрение и сопровождение'],
+    cta: 'Записаться на звонок',
+    primary: false,
+  },
+];
 
 function PricingSection() {
   const [ref, inView] = useInView();
@@ -488,35 +439,30 @@ function PricingSection() {
             Первый шаг должен давать реальную ценность — даже если вы не продолжите работу с нами.
           </p>
         </div>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 24, maxWidth: 880, margin: '0 auto' }}>
-          {[
-            {
-              title: 'Только аудит', highlight: false,
-              desc: 'Полный отчёт о присутствии в ИИ и стратегический брифинг.',
-              note: 'Для команд, которые хотят понять ситуацию до того, как вкладываться.',
-              sub: 'Фиксированная стоимость · Результат через [X] дней',
-              cta: 'Записаться на аудит',
-            },
-            {
-              title: 'Полное сопровождение', highlight: true,
-              desc: 'Аудит + 6-месячная программа ИИ-видимости.',
-              note: 'Стратегия, контент, внешние размещения, ежемесячный мониторинг.',
-              sub: 'Аудит включён · Стоимость по объёму',
-              cta: 'Обсудить программу',
-            },
-          ].map(({ title, highlight, desc, note, sub, cta }) => (
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 24 }}>
+          {PLANS.map(({ title, tag, highlight, desc, features, cta, primary }, pi) => (
             <div key={title} className={`card reveal ${inView ? 'visible' : ''}`} style={{
-              transitionDelay: highlight ? '.15s' : '0s',
+              transitionDelay: `${pi * 0.1}s`,
               borderColor: highlight ? 'rgba(45,232,212,0.35)' : 'var(--border)',
               background: highlight ? 'linear-gradient(135deg, rgba(45,232,212,0.06), rgba(124,111,255,0.04))' : 'var(--surface)',
-              padding: '40px 36px', position: 'relative', overflow: 'hidden',
+              padding: '36px 32px', position: 'relative', overflow: 'hidden',
+              display: 'flex', flexDirection: 'column',
             }}>
               {highlight && <div style={{ position: 'absolute', top: 16, right: 20, fontSize: 10, padding: '3px 10px', borderRadius: 20, background: 'rgba(45,232,212,0.15)', color: 'var(--cyan)', border: '1px solid rgba(45,232,212,0.3)', fontFamily: 'DM Sans,sans-serif', letterSpacing: '0.06em', textTransform: 'uppercase' }}>Популярный</div>}
-              <h3 style={{ color: 'var(--text)', fontFamily: 'Syne,sans-serif', fontSize: 22, marginBottom: 14 }}>{title}</h3>
-              <p style={{ color: 'var(--muted)', fontSize: 15, lineHeight: 1.7, marginBottom: 12 }}>{desc}</p>
-              <p style={{ color: highlight ? 'var(--text)' : 'var(--muted)', fontSize: 14, lineHeight: 1.6, marginBottom: 28 }}>{note}</p>
-              <div style={{ fontSize: 12, color: 'var(--muted)', marginBottom: 32, padding: '10px 16px', background: 'rgba(255,255,255,0.03)', borderRadius: 8 }}>{sub}</div>
-              <button className={highlight ? 'btn-primary' : 'btn-secondary'} style={{ width: '100%', justifyContent: 'center' }}>{cta} →</button>
+              <h3 style={{ color: 'var(--text)', fontFamily: 'Syne,sans-serif', fontSize: 22, marginBottom: 8 }}>{title}</h3>
+              <div style={{ fontSize: 12, color: highlight ? 'var(--cyan)' : 'var(--muted)', marginBottom: 16, fontFamily: 'DM Sans,sans-serif' }}>{tag}</div>
+              <p style={{ color: 'var(--muted)', fontSize: 14, lineHeight: 1.7, marginBottom: 20 }}>{desc}</p>
+              <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 28px', flex: 1 }}>
+                {features.map(f => (
+                  <li key={f} style={{ display: 'flex', alignItems: 'flex-start', gap: 10, marginBottom: 10, color: 'var(--muted)', fontSize: 14 }}>
+                    <span style={{ color: 'var(--cyan)', flexShrink: 0, marginTop: 2 }}>✓</span>
+                    {f}
+                  </li>
+                ))}
+              </ul>
+              <a href="https://calendly.com/a-liamtsev/30min" target="_blank" rel="noopener noreferrer" style={{ display: 'block' }}>
+                <button className={primary ? 'btn-primary' : 'btn-secondary'} style={{ width: '100%', justifyContent: 'center' }}>{cta} →</button>
+              </a>
             </div>
           ))}
         </div>
@@ -531,11 +477,13 @@ function PricingSection() {
 // ─── FAQ ──────────────────────────────────────────────────────────────────────
 
 const FAQS = [
-  { q: 'Нужны ли технические знания для работы с вами?', a: 'Нет. Мы берём на себя всё — стратегию, контент, техническую реализацию, мониторинг. Ваше участие — дать контекст о бизнесе и давать обратную связь.' },
-  { q: 'Чем это отличается от обычного SEO?', a: 'Классическое SEO оптимизирует под краулер Google. ИИ-оптимизация — про то, чтобы ваш контент был понятен и цитируем языковыми моделями. Принципы пересекаются, но выполнение разное. Мы работаем в обоих пространствах.' },
-  { q: 'Когда появятся первые результаты?', a: 'Первые улучшения в цитируемости обычно видны через 6–8 недель после изменений в контенте. Мы отслеживаем всё с первого месяца — вы видите движение, а не обещания.' },
-  { q: 'Какие ИИ-системы вы мониторите?', a: 'ChatGPT, Perplexity, Claude, Grok, Google AI Overview, Яндекс Нейро (Алиса). По запросу — проверки на локальных open-source моделях для клиентов, чья аудитория использует ИИ-powered продукты.' },
-  { q: 'Можно мониторить несколько сайтов?', a: 'Да. Ведём мониторинг по нескольким доменам для агентских клиентов. Напишите — обсудим вашу ситуацию.' },
+  { q: 'Как это работает?', a: 'Мы анализируем, как AI-системы воспринимают ваш бренд сегодня, где вы теряете видимость и почему конкуренты появляются чаще. Затем выстраиваем стратегию роста: улучшаем digital presence, структуру контента, доверительные сигналы и AI-ready visibility, чтобы ваш бренд чаще попадал в ответы Яндекс Нейро, ChatGPT, Google AI, Perplexity и других систем.' },
+  { q: 'Сколько это стоит?', a: 'Стоимость зависит от задач, рынка, масштаба бизнеса и уровня поддержки. Мы работаем по нескольким форматам: от стартового аудита до полного growth-сопровождения. После короткого ознакомительного звонка подбираем оптимальный формат под ваши цели и бюджет.' },
+  { q: 'Чем это отличается от SEO?', a: 'Классическое SEO работает на позиции в поисковой выдаче. Мы работаем шире — над тем, чтобы ваш бренд появлялся в ответах AI-систем, рекомендациях и conversational search. Это включает SEO, но дополняется AI visibility strategy, entity presence, trust signals, контентной архитектурой и cross-channel growth подходом.' },
+  { q: 'Какие гарантии?', a: 'Результаты у каждого бизнеса отличаются — всё зависит от ниши, конкуренции, текущей узнаваемости бренда и стартовой digital-базы. Мы гарантируем: прозрачный процесс и понятные этапы, регулярную отчётность и видимость прогресса, измеримые улучшения по ключевым метрикам, решения на основе данных и системный подход с фокусом на бизнес-результат.' },
+  { q: 'Когда ждать результат?', a: 'Первые инсайты и quick wins обычно появляются уже после аудита и первых внедрений. Более значимые результаты зависят от ниши, конкуренции и текущей базы бренда, но чаще всего заметная динамика появляется в течение 2–6 месяцев.' },
+  { q: 'Для кого это подходит?', a: 'Для B2B SaaS, e-commerce, marketplaces, экспертных сервисов и компаний, которым важно быть заметными там, где клиенты уже начинают искать через AI. Особенно полезно для брендов в конкурентных нишах.' },
+  { q: 'Что входит в аудит?', a: 'Аудит показывает текущую AI-видимость бренда, присутствие в ключевых системах, сильные и слабые стороны, точки роста и приоритетный roadmap действий. Это практический документ, а не шаблонный отчёт.' },
 ];
 
 function FAQSection() {
@@ -556,7 +504,7 @@ function FAQSection() {
               <span style={{ fontFamily: 'Syne,sans-serif', fontWeight: 700, fontSize: 17, color: 'var(--text)', textAlign: 'left', lineHeight: 1.4 }}>{q}</span>
               <span style={{ color: open === i ? 'var(--cyan)' : 'var(--muted)', fontSize: 22, flexShrink: 0, transition: 'transform .3s, color .3s', transform: open === i ? 'rotate(45deg)' : 'none', lineHeight: 1 }}>+</span>
             </button>
-            <div style={{ overflow: 'hidden', maxHeight: open === i ? 300 : 0, transition: 'max-height .35s ease', paddingBottom: open === i ? 24 : 0 }}>
+            <div style={{ overflow: 'hidden', maxHeight: open === i ? 400 : 0, transition: 'max-height .35s ease', paddingBottom: open === i ? 24 : 0 }}>
               <p style={{ color: 'var(--muted)', lineHeight: 1.7, fontSize: 15, margin: 0 }}>{a}</p>
             </div>
           </div>
@@ -580,18 +528,28 @@ function FooterCTA() {
           <p style={{ color: 'var(--muted)', fontSize: 17, lineHeight: 1.7, marginBottom: 40 }}>
             Запишитесь на бесплатный аудит. Даже если не продолжите — уйдёте с чёткой картиной своего ИИ-присутствия.
           </p>
-          <button className="btn-primary" style={{ fontSize: 17, padding: '18px 40px' }}>Записаться на аудит →</button>
+          <a href="https://calendly.com/a-liamtsev/30min" target="_blank" rel="noopener noreferrer">
+            <button className="btn-primary" style={{ fontSize: 17, padding: '18px 40px' }}>Записаться на аудит →</button>
+          </a>
         </div>
       </div>
       <div style={{ marginTop: 80, paddingTop: 40, borderTop: '1px solid var(--border)', display: 'flex', justifyContent: 'space-between', alignItems: 'center', maxWidth: 1200, margin: '80px auto 0' }}>
         <div style={{ fontFamily: 'Syne,sans-serif', fontWeight: 800, fontSize: 18, color: 'var(--text)', letterSpacing: '-0.04em' }}>
-          AI<span style={{ color: 'var(--cyan)' }}>visible</span>
+          AI<span style={{ color: 'var(--cyan)' }}>visibly</span>
         </div>
-        <div style={{ color: 'var(--muted)', fontSize: 13 }}>© 2025 AIvisible. GEO + AEO оптимизация</div>
-        <div style={{ display: 'flex', gap: 24 }}>
-          {['Telegram', 'Email'].map(t => (
-            <a key={t} href="#" style={{ color: 'var(--muted)', fontSize: 13, textDecoration: 'none', transition: 'color .2s' }}
-              onMouseEnter={e => e.target.style.color = 'var(--cyan)'} onMouseLeave={e => e.target.style.color = 'var(--muted)'}>{t}</a>
+        <div style={{ color: 'var(--muted)', fontSize: 13 }}>© 2025 AIvisibly.</div>
+        <div style={{ display: 'flex', gap: 24, flexWrap: 'wrap', justifyContent: 'flex-end' }}>
+          {[
+            { label: 'hello@aivisibly.ru', href: 'mailto:hello@aivisibly.ru' },
+            { label: '+7 920 329-08-00', href: 'tel:+79203290800' },
+            { label: 'Записаться на консультацию →', href: 'https://calendly.com/a-liamtsev/30min', accent: true },
+          ].map(({ label, href, accent }) => (
+            <a key={label} href={href} target={href.startsWith('http') ? '_blank' : undefined} rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
+              style={{ color: accent ? 'var(--cyan)' : 'var(--muted)', fontSize: 13, textDecoration: 'none', transition: 'color .2s' }}
+              onMouseEnter={e => e.target.style.color = 'var(--cyan)'}
+              onMouseLeave={e => e.target.style.color = accent ? 'var(--cyan)' : 'var(--muted)'}>
+              {label}
+            </a>
           ))}
         </div>
       </div>
@@ -626,7 +584,6 @@ function TweaksPanel({ defaults, onChange }) {
   return (
     <div style={{ position: 'fixed', bottom: 24, right: 24, zIndex: 9999, background: 'rgba(13,13,36,0.95)', border: '1px solid rgba(45,232,212,0.25)', borderRadius: 16, padding: '20px 24px', width: 280, backdropFilter: 'blur(24px)', boxShadow: '0 20px 60px rgba(0,0,0,0.5)' }}>
       <div style={{ fontFamily: 'Syne,sans-serif', fontWeight: 700, fontSize: 14, color: 'var(--text)', marginBottom: 20, letterSpacing: '-0.02em' }}>Tweaks</div>
-      {/* Accent color */}
       <div style={{ marginBottom: 18 }}>
         <div style={{ fontSize: 11, color: 'var(--muted)', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 10, fontFamily: 'DM Sans,sans-serif' }}>Акцентный цвет</div>
         <div style={{ display: 'flex', gap: 8 }}>
@@ -636,7 +593,6 @@ function TweaksPanel({ defaults, onChange }) {
           ))}
         </div>
       </div>
-      {/* Terminal speed */}
       <div>
         <div style={{ fontSize: 11, color: 'var(--muted)', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 10, fontFamily: 'DM Sans,sans-serif' }}>Фон героя</div>
         <div style={{ display: 'flex', gap: 8 }}>
@@ -654,4 +610,4 @@ function TweaksPanel({ defaults, onChange }) {
 
 // ─── Exports ──────────────────────────────────────────────────────────────────
 
-Object.assign(window, { Nav, Hero, ProblemSection, NewRealitySection, ServicesSection, RoadmapSection, ResultsSection, WhySaaSSection, PricingSection, FAQSection, FooterCTA, TweaksPanel });
+Object.assign(window, { Nav, Hero, ProblemSection, NewRealitySection, ServicesSection, ResultsSection, TeamSection, PricingSection, FAQSection, FooterCTA, TweaksPanel });
