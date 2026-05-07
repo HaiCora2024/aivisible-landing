@@ -603,13 +603,15 @@ function ContactSection() {
   return (
     <section id="contact" ref={ref} style={{ padding: '120px clamp(24px,5vw,64px)' }} data-screen-label="Contact">
       <div style={{ maxWidth: 560, margin: '0 auto' }}>
-        <div className={`reveal ${inView ? 'visible' : ''}`} style={{ textAlign: 'center', marginBottom: 48 }}>
-          <img src="logo.png" alt="ИИvisibly" style={{ height: 90, marginBottom: 32, display: 'block', margin: '0 auto 32px' }} />
-          <div className="section-label" style={{ justifyContent: 'center' }}>Связаться с нами</div>
-          <h2 style={{ color: 'var(--text)', marginBottom: 16 }}>Расскажите о вашем бизнесе</h2>
-          <p style={{ color: 'var(--muted)', fontSize: 16, lineHeight: 1.7 }}>
-            Заполните форму — мы свяжемся с вами в течение одного рабочего дня.
-          </p>
+        <div style={{ textAlign: 'center', marginBottom: 48 }}>
+          <img src="/logo.png" alt="ИИvisibly" style={{ height: 120, width: 'auto', display: 'block', margin: '0 auto 32px' }} />
+          <div className={`reveal ${inView ? 'visible' : ''}`}>
+            <div className="section-label" style={{ justifyContent: 'center' }}>Связаться с нами</div>
+            <h2 style={{ color: 'var(--text)', marginBottom: 16 }}>Расскажите о вашем бизнесе</h2>
+            <p style={{ color: 'var(--muted)', fontSize: 16, lineHeight: 1.7 }}>
+              Заполните форму — мы свяжемся с вами в течение одного рабочего дня.
+            </p>
+          </div>
         </div>
 
         {sent ? (
