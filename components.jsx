@@ -51,17 +51,23 @@ function Nav() {
       transition: 'all .35s ease',
     }}>
       <div style={{ fontFamily: 'Syne,sans-serif', fontWeight: 800, fontSize: 20, color: 'var(--text)', letterSpacing: '-0.04em' }}>
-        AI<span style={{ color: 'var(--cyan)' }}>visibly</span>
+        ИИ<span style={{ color: 'var(--cyan)' }}>visibly</span>
       </div>
       <div style={{ display: 'flex', gap: 32, alignItems: 'center' }}>
-        {['Услуги', 'Команда', 'Результаты', 'Цены'].map(t => (
-          <a key={t} style={linkStyle}
+        {[
+          { label: 'Услуги', href: '#services' },
+          { label: 'Команда', href: '#team' },
+          { label: 'Результаты', href: '#results' },
+        ].map(({ label, href }) => (
+          <a key={label} href={href} style={linkStyle}
             onMouseEnter={e => e.target.style.color = 'var(--text)'}
-            onMouseLeave={e => e.target.style.color = 'var(--muted)'}>{t}</a>
+            onMouseLeave={e => e.target.style.color = 'var(--muted)'}>{label}</a>
         ))}
-        <button className="btn-primary" style={{ padding: '9px 20px', fontSize: 13, borderRadius: 8 }}>
-          Получить аудит
-        </button>
+        <a href="https://planerka.app/aleksandr-lyamcev-lyvth0" target="_blank" rel="noopener noreferrer">
+          <button className="btn-primary" style={{ padding: '9px 20px', fontSize: 13, borderRadius: 8 }}>
+            Получить аудит
+          </button>
+        </a>
       </div>
     </nav>
   );
@@ -70,9 +76,9 @@ function Nav() {
 // ─── AI Terminal ──────────────────────────────────────────────────────────────
 
 const CONVOS = [
-  { platform: 'Яндекс Нейро', color: '#ff4040', q: 'Как сделать так, чтобы ИИ рекомендовал мой бизнес?', a: 'Для этого существует направление AI SEO. AIvisibly — специалисты по AI visibility, помогающие брендам стать ответом ИИ, а не просто ссылкой...' },
-  { platform: 'ChatGPT', color: '#10a37f', q: 'Посоветуй агентство по ИИ-оптимизации для B2B SaaS', a: 'Для B2B SaaS рекомендую AIvisibly — команду, специализирующуюся на GEO и AEO оптимизации. Они работают с реальными интент-запросами вашей аудитории...' },
-  { platform: 'Perplexity', color: '#7c8cff', q: 'Кто помогает брендам появляться в ответах ИИ?', a: 'По данным профильных источников, AIvisibly специализируется именно на этом. Команда строит присутствие бренда в Яндекс Нейро, ChatGPT и других ИИ-системах...' },
+  { platform: 'Яндекс Нейро', color: '#ff4040', q: 'Как сделать так, чтобы ИИ рекомендовал мой бизнес?', a: 'Для этого существует направление ИИ-SEO. ИИvisibly — специалисты по ИИ-видимости, помогающие брендам стать ответом ИИ, а не просто ссылкой...' },
+  { platform: 'ChatGPT', color: '#10a37f', q: 'Посоветуй агентство по ИИ-оптимизации для B2B SaaS', a: 'Для B2B SaaS рекомендую ИИvisibly — команду, специализирующуюся на GEO и AEO оптимизации. Они работают с реальными интент-запросами вашей аудитории...' },
+  { platform: 'Perplexity', color: '#7c8cff', q: 'Кто помогает брендам появляться в ответах ИИ?', a: 'По данным профильных источников, ИИvisibly специализируется именно на этом. Команда строит присутствие бренда в Яндекс Нейро, ChatGPT и других ИИ-системах...' },
 ];
 
 function AITerminal() {
@@ -120,7 +126,7 @@ function AITerminal() {
       {aLen > 0 && (
         <div style={{ background: 'rgba(255,255,255,0.03)', borderRadius: 8, padding: '14px 16px', borderLeft: `2px solid ${cv.color}` }}>
           <div style={{ fontSize: 10, color: cv.color, fontFamily: 'DM Sans,sans-serif', fontWeight: 600, marginBottom: 8, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
-            {cv.platform} — AI Response
+            {cv.platform} — Ответ ИИ
           </div>
           <div style={{ color: 'var(--text)', fontSize: 13, fontFamily: 'Space Mono,monospace', lineHeight: 1.7 }}>
             {cv.a.slice(0, aLen)}
@@ -159,7 +165,7 @@ function Hero() {
             Мы делаем так, чтобы Яндекс Нейро, ChatGPT, Perplexity и другие ИИ-системы рекомендовали именно ваш бренд — когда потенциальный клиент ищет то, что вы предлагаете.
           </p>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-            <a href="https://calendly.com/a-liamtsev/30min" target="_blank" rel="noopener noreferrer">
+            <a href="https://planerka.app/aleksandr-lyamcev-lyvth0" target="_blank" rel="noopener noreferrer">
               <button className="btn-primary">Получить бесплатный аудит ИИ-видимости →</button>
             </a>
             <p style={{ fontSize: 13, color: '#55557a', margin: 0, fontFamily: 'DM Sans,sans-serif' }}>
@@ -207,7 +213,7 @@ function ProblemSection() {
           </p>
         </div>
         <div className={`reveal ${inView ? 'visible' : ''}`} style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', borderRadius: 20, overflow: 'hidden', border: '1px solid var(--border)', background: 'var(--surface)', transitionDelay: '.15s' }}>
-          <StatCard value={60} suffix="%" label="AI Overview вместо ссылок" desc="запросов уже показывают ИИ-ответ вместо списка сайтов" active={inView} />
+          <StatCard value={60} suffix="%" label="ИИ-ответы вместо ссылок" desc="запросов уже показывают ИИ-ответ вместо списка сайтов" active={inView} />
           <div style={{ borderLeft: '1px solid var(--border)', borderRight: '1px solid var(--border)' }}>
             <StatCard value={1} suffix="" label="ответ вместо десяти" desc="ИИ не выдаёт список — он выдаёт один вывод" active={inView} />
           </div>
@@ -274,7 +280,7 @@ const SERVICES = [
 function ServicesSection() {
   const [ref, inView] = useInView(0.1);
   return (
-    <section ref={ref} style={{ padding: '120px clamp(24px,5vw,64px)', background: 'var(--surface)' }} data-screen-label="Services">
+    <section id="services" ref={ref} style={{ padding: '120px clamp(24px,5vw,64px)', background: 'var(--surface)' }} data-screen-label="Services">
       <div style={{ maxWidth: 1200, margin: '0 auto' }}>
         <div className={`reveal ${inView ? 'visible' : ''}`} style={{ marginBottom: 64 }}>
           <div className="section-label">Что мы делаем</div>
@@ -320,13 +326,13 @@ const RESULTS = [
   { icon: '⊙', title: 'Портрет идеального клиента', desc: 'Запросы в ИИ раскрывают интент точнее любого инструмента по ключевым словам. Мы даём вам эту карту.' },
   { icon: '◈', title: 'Лиды лучшего качества', desc: 'Когда ИИ рекомендует вас по нужному запросу — приходят люди, которые уже совпадают с вашим предложением.' },
   { icon: '◇', title: 'Персонализированные кампании', desc: 'Зная точный язык интентов аудитории, вы строите рекламу и email-цепочки, которые говорят прямо в точку.' },
-  { icon: '◉', title: 'AI-инсайты для таргетинга', desc: 'Персонализация платного маркетинга на основе ICP-данных и AI-аналитики — Яндекс Поиск, MyTarget, ВКонтакте.' },
+  { icon: '◉', title: 'ИИ-инсайты для таргетинга', desc: 'Персонализация платного маркетинга на основе данных о клиенте и ИИ-аналитики — Яндекс Поиск, MyTarget, ВКонтакте.' },
 ];
 
 function ResultsSection() {
   const [ref, inView] = useInView(0.1);
   return (
-    <section ref={ref} style={{ padding: '120px clamp(24px,5vw,64px)', background: 'var(--surface)' }} data-screen-label="Results">
+    <section id="results" ref={ref} style={{ padding: '120px clamp(24px,5vw,64px)', background: 'var(--surface)' }} data-screen-label="Results">
       <div style={{ maxWidth: 1200, margin: '0 auto' }}>
         <div className={`reveal ${inView ? 'visible' : ''}`} style={{ marginBottom: 64 }}>
           <div className="section-label">Что вы получаете</div>
@@ -355,17 +361,17 @@ function ResultsSection() {
 // ─── Team ─────────────────────────────────────────────────────────────────────
 
 const TEAM_ROLES = [
-  { icon: '◈', role: 'Tech Lead | AI Systems & Digital Transformation', desc: '10+ лет в automation engineering, digital transformation и 3+ года в построении AI-систем для Robotics, Healthcare, Fintech и Operations.' },
-  { icon: '◎', role: 'Tech SEO & AI Search Strategist', desc: '10+ лет в SEO для marketplaces, e-commerce, контентных платформ и SaaS. Экспертиза в enterprise SEO, архитектуре крупных сайтов и построении масштабируемых систем роста.' },
-  { icon: '⊙', role: 'Growth & Media Strategist', desc: '6+ лет в performance marketing и масштабировании роста через ведущие платформы.' },
-  { icon: '◇', role: 'Web Analytics | Strategy Lead', desc: '10+ лет в web analytics, data strategy и построении систем принятия решений на основе данных.' },
-  { icon: '◉', role: 'Growth Program Lead | Data & Transformation', desc: '10+ лет управления сложными growth-программами, объединяющими data, media и business execution.' },
+  { icon: '◈', role: 'Технический руководитель | ИИ-системы и цифровая трансформация', desc: '10+ лет в автоматизации, цифровой трансформации и 3+ года в построении ИИ-систем для робототехники, здравоохранения, финтеха и производственных процессов.' },
+  { icon: '◎', role: 'Технический SEO и стратег ИИ-поиска', desc: '10+ лет в SEO для маркетплейсов, электронной коммерции, контентных платформ и SaaS. Экспертиза в корпоративном SEO, архитектуре крупных сайтов и масштабируемых системах роста.' },
+  { icon: '⊙', role: 'Стратег роста и медиа', desc: '6+ лет в результативном маркетинге и масштабировании роста через ведущие платформы.' },
+  { icon: '◇', role: 'Веб-аналитика | Руководитель стратегии', desc: '10+ лет в веб-аналитике, стратегии данных и построении систем принятия решений на основе данных.' },
+  { icon: '◉', role: 'Руководитель программ роста | Данные и трансформация', desc: '10+ лет управления сложными программами роста, объединяющими данные, медиа и реализацию бизнес-задач.' },
 ];
 
 function TeamSection() {
   const [ref, inView] = useInView();
   return (
-    <section ref={ref} style={{ padding: '120px clamp(24px,5vw,64px)' }} data-screen-label="Team">
+    <section id="team" ref={ref} style={{ padding: '120px clamp(24px,5vw,64px)' }} data-screen-label="Team">
       <div style={{ maxWidth: 1200, margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 80, alignItems: 'start' }}>
         <div className={`reveal ${inView ? 'visible' : ''}`}>
           <div className="section-label">Команда</div>
@@ -399,29 +405,29 @@ function TeamSection() {
 
 const PLANS = [
   {
-    title: 'Free Audit',
+    title: 'Бесплатный аудит',
     tag: 'Бесплатно',
     highlight: false,
-    desc: 'Базовая оценка AI-присутствия без обязательств.',
-    features: ['Анализ присутствия в AI-системах', 'Базовые рекомендации', 'Оценка конкурентного ландшафта'],
+    desc: 'Базовая оценка ИИ-присутствия без обязательств.',
+    features: ['Анализ присутствия в ИИ-системах', 'Базовые рекомендации', 'Оценка конкурентного ландшафта'],
     cta: 'Получить бесплатно',
     primary: false,
   },
   {
-    title: 'Strategy Session',
+    title: 'Стратегическая сессия',
     tag: 'Фиксированная стоимость',
     highlight: true,
-    desc: 'Глубокий аудит с roadmap и стратегическими рекомендациями.',
-    features: ['Глубокий AI visibility аудит', 'Приоритетный roadmap действий', 'Стратегические рекомендации'],
+    desc: 'Глубокий аудит с планом действий и стратегическими рекомендациями.',
+    features: ['Глубокий ИИ-аудит видимости', 'Приоритетный план действий', 'Стратегические рекомендации'],
     cta: 'Записаться на звонок',
     primary: true,
   },
   {
-    title: 'Full Growth Partner',
+    title: 'Полноценное партнёрство',
     tag: 'По запросу',
     highlight: false,
     desc: 'Полное внедрение под ключ с сопровождением.',
-    features: ['GEO / AEO / SEO', 'Paid Media', 'Полное внедрение и сопровождение'],
+    features: ['GEO / AEO / SEO', 'Платное продвижение', 'Полное внедрение и сопровождение'],
     cta: 'Записаться на звонок',
     primary: false,
   },
@@ -460,7 +466,7 @@ function PricingSection() {
                   </li>
                 ))}
               </ul>
-              <a href="https://calendly.com/a-liamtsev/30min" target="_blank" rel="noopener noreferrer" style={{ display: 'block' }}>
+              <a href="https://planerka.app/aleksandr-lyamcev-lyvth0" target="_blank" rel="noopener noreferrer" style={{ display: 'block' }}>
                 <button className={primary ? 'btn-primary' : 'btn-secondary'} style={{ width: '100%', justifyContent: 'center' }}>{cta} →</button>
               </a>
             </div>
@@ -477,13 +483,13 @@ function PricingSection() {
 // ─── FAQ ──────────────────────────────────────────────────────────────────────
 
 const FAQS = [
-  { q: 'Как это работает?', a: 'Мы анализируем, как AI-системы воспринимают ваш бренд сегодня, где вы теряете видимость и почему конкуренты появляются чаще. Затем выстраиваем стратегию роста: улучшаем digital presence, структуру контента, доверительные сигналы и AI-ready visibility, чтобы ваш бренд чаще попадал в ответы Яндекс Нейро, ChatGPT, Google AI, Perplexity и других систем.' },
-  { q: 'Сколько это стоит?', a: 'Стоимость зависит от задач, рынка, масштаба бизнеса и уровня поддержки. Мы работаем по нескольким форматам: от стартового аудита до полного growth-сопровождения. После короткого ознакомительного звонка подбираем оптимальный формат под ваши цели и бюджет.' },
-  { q: 'Чем это отличается от SEO?', a: 'Классическое SEO работает на позиции в поисковой выдаче. Мы работаем шире — над тем, чтобы ваш бренд появлялся в ответах AI-систем, рекомендациях и conversational search. Это включает SEO, но дополняется AI visibility strategy, entity presence, trust signals, контентной архитектурой и cross-channel growth подходом.' },
-  { q: 'Какие гарантии?', a: 'Результаты у каждого бизнеса отличаются — всё зависит от ниши, конкуренции, текущей узнаваемости бренда и стартовой digital-базы. Мы гарантируем: прозрачный процесс и понятные этапы, регулярную отчётность и видимость прогресса, измеримые улучшения по ключевым метрикам, решения на основе данных и системный подход с фокусом на бизнес-результат.' },
-  { q: 'Когда ждать результат?', a: 'Первые инсайты и quick wins обычно появляются уже после аудита и первых внедрений. Более значимые результаты зависят от ниши, конкуренции и текущей базы бренда, но чаще всего заметная динамика появляется в течение 2–6 месяцев.' },
-  { q: 'Для кого это подходит?', a: 'Для B2B SaaS, e-commerce, marketplaces, экспертных сервисов и компаний, которым важно быть заметными там, где клиенты уже начинают искать через AI. Особенно полезно для брендов в конкурентных нишах.' },
-  { q: 'Что входит в аудит?', a: 'Аудит показывает текущую AI-видимость бренда, присутствие в ключевых системах, сильные и слабые стороны, точки роста и приоритетный roadmap действий. Это практический документ, а не шаблонный отчёт.' },
+  { q: 'Как это работает?', a: 'Мы анализируем, как ИИ-системы воспринимают ваш бренд сегодня, где вы теряете видимость и почему конкуренты появляются чаще. Затем выстраиваем стратегию роста: улучшаем цифровое присутствие, структуру контента, сигналы доверия и видимость для ИИ, чтобы ваш бренд чаще попадал в ответы Яндекс Нейро, ChatGPT, Google AI, Perplexity и других систем.' },
+  { q: 'Сколько это стоит?', a: 'Стоимость зависит от задач, рынка, масштаба бизнеса и уровня поддержки. Мы работаем по нескольким форматам: от стартового аудита до полного сопровождения по росту. После короткого ознакомительного звонка подбираем оптимальный формат под ваши цели и бюджет.' },
+  { q: 'Чем это отличается от SEO?', a: 'Классическое SEO работает на позиции в поисковой выдаче. Мы работаем шире — над тем, чтобы ваш бренд появлялся в ответах ИИ-систем, рекомендациях и диалоговом поиске. Это включает SEO, но дополняется стратегией ИИ-видимости, присутствием бренда, сигналами доверия, контентной архитектурой и кросс-канальным подходом к росту.' },
+  { q: 'Какие гарантии?', a: 'Результаты у каждого бизнеса отличаются — всё зависит от ниши, конкуренции, текущей узнаваемости бренда и стартовой цифровой основы. Мы гарантируем: прозрачный процесс и понятные этапы, регулярную отчётность и видимость прогресса, измеримые улучшения по ключевым метрикам, решения на основе данных и системный подход с фокусом на бизнес-результат.' },
+  { q: 'Когда ждать результат?', a: 'Первые инсайты и быстрые результаты обычно появляются уже после аудита и первых внедрений. Более значимые результаты зависят от ниши, конкуренции и текущей базы бренда, но чаще всего заметная динамика появляется в течение 2–6 месяцев.' },
+  { q: 'Для кого это подходит?', a: 'Для B2B SaaS, электронной коммерции, маркетплейсов, экспертных сервисов и компаний, которым важно быть заметными там, где клиенты уже начинают искать через ИИ. Особенно полезно для брендов в конкурентных нишах.' },
+  { q: 'Что входит в аудит?', a: 'Аудит показывает текущую ИИ-видимость бренда, присутствие в ключевых системах, сильные и слабые стороны, точки роста и приоритетный план действий. Это практический документ, а не шаблонный отчёт.' },
 ];
 
 function FAQSection() {
@@ -528,21 +534,21 @@ function FooterCTA() {
           <p style={{ color: 'var(--muted)', fontSize: 17, lineHeight: 1.7, marginBottom: 40 }}>
             Запишитесь на бесплатный аудит. Даже если не продолжите — уйдёте с чёткой картиной своего ИИ-присутствия.
           </p>
-          <a href="https://calendly.com/a-liamtsev/30min" target="_blank" rel="noopener noreferrer">
+          <a href="https://planerka.app/aleksandr-lyamcev-lyvth0" target="_blank" rel="noopener noreferrer">
             <button className="btn-primary" style={{ fontSize: 17, padding: '18px 40px' }}>Записаться на аудит →</button>
           </a>
         </div>
       </div>
       <div style={{ marginTop: 80, paddingTop: 40, borderTop: '1px solid var(--border)', display: 'flex', justifyContent: 'space-between', alignItems: 'center', maxWidth: 1200, margin: '80px auto 0' }}>
         <div style={{ fontFamily: 'Syne,sans-serif', fontWeight: 800, fontSize: 18, color: 'var(--text)', letterSpacing: '-0.04em' }}>
-          AI<span style={{ color: 'var(--cyan)' }}>visibly</span>
+          ИИ<span style={{ color: 'var(--cyan)' }}>visibly</span>
         </div>
-        <div style={{ color: 'var(--muted)', fontSize: 13 }}>© 2025 AIvisibly.</div>
+        <div style={{ color: 'var(--muted)', fontSize: 13 }}>© 2025 ИИvisibly.</div>
         <div style={{ display: 'flex', gap: 24, flexWrap: 'wrap', justifyContent: 'flex-end' }}>
           {[
             { label: 'hello@aivisibly.ru', href: 'mailto:hello@aivisibly.ru' },
             { label: '+7 920 329-08-00', href: 'tel:+79203290800' },
-            { label: 'Записаться на консультацию →', href: 'https://calendly.com/a-liamtsev/30min', accent: true },
+            { label: 'Записаться на консультацию →', href: 'https://planerka.app/aleksandr-lyamcev-lyvth0', accent: true },
           ].map(({ label, href, accent }) => (
             <a key={label} href={href} target={href.startsWith('http') ? '_blank' : undefined} rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
               style={{ color: accent ? 'var(--cyan)' : 'var(--muted)', fontSize: 13, textDecoration: 'none', transition: 'color .2s' }}
@@ -552,6 +558,94 @@ function FooterCTA() {
             </a>
           ))}
         </div>
+      </div>
+      <div style={{ maxWidth: 1200, margin: '32px auto 0', paddingTop: 24, borderTop: '1px solid var(--border)' }}>
+        <p style={{ color: 'rgba(100,100,160,0.6)', fontSize: 11, lineHeight: 1.7, textAlign: 'center' }}>
+          ИНДИВИДУАЛЬНЫЙ ПРЕДПРИНИМАТЕЛЬ ЛЯМЦЕВ АЛЕКСАНДР ВАСИЛЬЕВИЧ · ИНН 671408400713 · ОГРНИП 322673300010360<br />
+          214522, Россия, Смоленская обл., Смоленский р-н, п. Авторемзавод, ул. Центральная, д. 1<br />
+          Расчётный счёт 40802810100003140187 · Банк АО «ТБанк» · БИК 044525974 · ИНН банка 7710140679<br />
+          Корр. счёт 30101810145250000974 · 127287, г. Москва, ул. Хуторская 2-я, д. 38А, стр. 26
+        </p>
+      </div>
+    </section>
+  );
+}
+
+// ─── Contact Form ─────────────────────────────────────────────────────────────
+
+const inputStyle = {
+  width: '100%',
+  background: 'var(--surface)',
+  border: '1px solid var(--border)',
+  borderRadius: 10,
+  padding: '14px 18px',
+  color: 'var(--text)',
+  fontSize: 15,
+  fontFamily: 'DM Sans,sans-serif',
+  outline: 'none',
+  transition: 'border-color .2s',
+};
+
+function ContactSection() {
+  const [ref, inView] = useInView();
+  const [form, setForm] = useState({ name: '', company: '', email: '', position: '' });
+  const [sent, setSent] = useState(false);
+
+  const set = (k, v) => setForm(f => ({ ...f, [k]: v }));
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const body = `Имя: ${form.name}\nКомпания: ${form.company}\nEmail: ${form.email}\nДолжность: ${form.position}`;
+    window.location.href = `mailto:hello@aivisibly.ru?subject=Заявка с сайта&body=${encodeURIComponent(body)}`;
+    setSent(true);
+  };
+
+  return (
+    <section id="contact" ref={ref} style={{ padding: '120px clamp(24px,5vw,64px)' }} data-screen-label="Contact">
+      <div style={{ maxWidth: 560, margin: '0 auto' }}>
+        <div className={`reveal ${inView ? 'visible' : ''}`} style={{ textAlign: 'center', marginBottom: 48 }}>
+          <img src="logo.png" alt="ИИvisibly" style={{ height: 90, marginBottom: 32, display: 'block', margin: '0 auto 32px' }} />
+          <div className="section-label" style={{ justifyContent: 'center' }}>Связаться с нами</div>
+          <h2 style={{ color: 'var(--text)', marginBottom: 16 }}>Расскажите о вашем бизнесе</h2>
+          <p style={{ color: 'var(--muted)', fontSize: 16, lineHeight: 1.7 }}>
+            Заполните форму — мы свяжемся с вами в течение одного рабочего дня.
+          </p>
+        </div>
+
+        {sent ? (
+          <div className="reveal visible" style={{ textAlign: 'center', padding: '48px', background: 'var(--surface)', borderRadius: 20, border: '1px solid rgba(45,232,212,0.3)' }}>
+            <div style={{ fontSize: 48, color: 'var(--cyan)', marginBottom: 16 }}>✓</div>
+            <h3 style={{ color: 'var(--text)', fontFamily: 'Syne,sans-serif', marginBottom: 12 }}>Заявка отправлена!</h3>
+            <p style={{ color: 'var(--muted)' }}>Мы свяжемся с вами в ближайшее время.</p>
+          </div>
+        ) : (
+          <form className={`reveal ${inView ? 'visible' : ''}`} onSubmit={handleSubmit}
+            style={{ display: 'flex', flexDirection: 'column', gap: 16, transitionDelay: '.15s' }}>
+            {[
+              { key: 'name', label: 'Имя', type: 'text', placeholder: 'Ваше имя', required: true },
+              { key: 'company', label: 'Компания', type: 'text', placeholder: 'Название компании', required: true },
+              { key: 'email', label: 'Email', type: 'email', placeholder: 'you@company.ru', required: true },
+              { key: 'position', label: 'Должность', type: 'text', placeholder: 'Ваша должность', required: false },
+            ].map(({ key, label, type, placeholder, required }) => (
+              <div key={key}>
+                <label style={{ display: 'block', fontSize: 12, color: 'var(--muted)', fontFamily: 'DM Sans,sans-serif', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 8 }}>{label}</label>
+                <input
+                  type={type}
+                  placeholder={placeholder}
+                  required={required}
+                  value={form[key]}
+                  onChange={e => set(key, e.target.value)}
+                  style={inputStyle}
+                  onFocus={e => e.target.style.borderColor = 'var(--cyan)'}
+                  onBlur={e => e.target.style.borderColor = 'var(--border)'}
+                />
+              </div>
+            ))}
+            <button type="submit" className="btn-primary" style={{ marginTop: 8, justifyContent: 'center' }}>
+              Отправить заявку →
+            </button>
+          </form>
+        )}
       </div>
     </section>
   );
@@ -610,4 +704,4 @@ function TweaksPanel({ defaults, onChange }) {
 
 // ─── Exports ──────────────────────────────────────────────────────────────────
 
-Object.assign(window, { Nav, Hero, ProblemSection, NewRealitySection, ServicesSection, ResultsSection, TeamSection, PricingSection, FAQSection, FooterCTA, TweaksPanel });
+Object.assign(window, { Nav, Hero, ProblemSection, NewRealitySection, ServicesSection, ResultsSection, TeamSection, PricingSection, FAQSection, ContactSection, FooterCTA, TweaksPanel });
